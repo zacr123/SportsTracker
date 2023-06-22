@@ -4,11 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        {
+            "name": "Launch Chrome for Laptop",
+            "request": "launch",
+            "type": "chrome",
+            "url": "file:///E:/Documents/GitHubSportTracker/SportsTracker/Home.html",
+            "webRoot": "${workspaceFolder}"
+        },
+
 
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Launch Chrome for Home",
             "url": "file:///E:/Documents/GitHubSportTracker/SportsTracker/Home.html",
             "webRoot": "${workspaceFolder}"
         }
