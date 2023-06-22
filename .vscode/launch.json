@@ -8,7 +8,7 @@
             "name": "Launch Chrome for Laptop",
             "request": "launch",
             "type": "chrome",
-            "url": "file:///E:/Documents/GitHubSportTracker/SportsTracker/Home.html",
+            "url": "file:///C:/Users/zacri/OneDrive/Documents/GitHubSportsTracker/SportsTracker/Home.html",
             "webRoot": "${workspaceFolder}"
         },
 
