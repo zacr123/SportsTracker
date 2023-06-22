@@ -9,7 +9,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost/Home.html",
+            "url": "file:///E:/Documents/GitHubSportTracker/SportsTracker/Home.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
