@@ -68,7 +68,7 @@ body{
     object-fit: cover;
   }
   
-  /* Show the active image */
+
   .carousel-item.active img {
     display: block;
   }
