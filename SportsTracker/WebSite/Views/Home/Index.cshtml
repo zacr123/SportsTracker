@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel Slides -->
+        <div class="carousel-inner">
+            @for (int i = 0; i < Model.Length; i++)
+            {
+                var sport = Model[i];
+                <div class="carousel-item @(i==0?"active":"")">
+                <img src="Images/@sport.Image" alt="@sport.Name">
+                <div class="carousel-caption">
+                    <h3>@sport.Name</h3>
+                    @Html.ActionLink("Select","Index","Recording",new {sport = Model[i].Name})
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
