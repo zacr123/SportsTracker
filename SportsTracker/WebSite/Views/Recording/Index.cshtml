@@ -1,5 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Recording Page";
 }
+<script type="text/javascript">
+    function AddOurScore(amount)
+    {
+        score = document.getElementById('ourScore');
+        currentScore = score.innerText * 1;
+        currentScore = currentScore + amount;
+        score.innerText = currentScore;
+    }
+
+    function AddTheirScore(amount) 
+    {
+        score = document.getElementById('theirScore');
+        currentScore = score.innerText * 1;
+        currentScore = currentScore + amount;
+        score.innerText = currentScore;
+    }
+</script>
 
 <h1>Hello I am recording @Model.Name</h1>
+
+<h2>Our Score</h2>
+<h2 id="ourScore">0</h2>
+@for (int i = 0; i < Model.Points.Length; i++)
+{
+    <button type="button" onclick="AddOurScore(@Model.Points[i])">@(Model.Points[i])</button>
+}
+
+<h2>Their Score</h2>
+<h2 id="theirScore">0</h2>
+@for (int i = 0; i < Model.Points.Length; i++)
+{
+    <button type="button" onclick="AddTheirScore(@Model.Points[i])">@(Model.Points[i])</button>
+}
