@@ -51,24 +51,39 @@ body {
     height: 80vh;
 }
 
-    .carousel-item img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-    }
+.carousel-item img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
 
-    .carousel-item img {
-        width: 800px;
-        height: 500px;
-        object-fit: cover;
-    }
+.carousel-item img {
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
+}
 
+.carousel-item.active img {
+    display: block;
+}
 
-    .carousel-item.active img {
-        display: block;
-    }
+button.OurScore {
+    background-color: #b6ff00
+}
+
+button.TheirScore {
+background-color: #ff0000
+}
+
+h2.OurScore {
+    color:#ffd800 
+}
+
+h2.TheirScore {
+    color:#ffffff
+}
