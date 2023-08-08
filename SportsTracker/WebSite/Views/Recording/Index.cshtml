@@ -17,6 +17,58 @@
         currentScore = currentScore + amount;
         score.innerText = currentScore;
     }
+
+    var counter = 0;
+    var internal;
+    function StartTimer()
+    {
+        ShowTime();
+        interval=setInterval(ShowTime, 1000)
+        document.getElementById("start").setAttribute("disabled","true");
+        document.getElementById("stop").removeAttribute("disabled");
+    }
+
+    function StopTimer() {
+        clearInterval(interval);
+        document.getElementById("stop").setAttribute("disabled", "true");
+        document.getElementById("restart").removeAttribute("disabled");
+        document.getElementById("finish").removeAttribute("disabled");
+        var currentHtml = document.getElementById("GameProgress").innerHTML;
+        counter = counter - 1;
+        currentHtml = currentHtml + "<br/>" + GetGameTime();
+        document.getElementById("GameProgress").innerHTML = currentHtml;
+    }
+
+    function RestartTimer() {
+        counter = 0;
+        ShowTime();
+        interval = setInterval(ShowTime, 1000)
+        document.getElementById("stop").removeAttribute("disabled");
+        document.getElementById("restart").setAttribute("disabled", "true");
+        document.getElementById("finish").setAttribute("disabled", "true");
+    }
+
+    function EndTimer() {
+        counter = 0;
+        ShowTime();
+        clearInterval(interval);
+        document.getElementById("restart").setAttribute("disabled", "true");
+        document.getElementById("finish").setAttribute("disabled", "true");
+        alert("Game done!");
+    }
+
+    function ShowTime() {
+        document.getElementById('timeOutput').innerText = GetGameTime();
+        counter = counter + 1;
+    }
+
+    function GetGameTime()
+    {
+        var seconds = counter % 60;
+        var minutes = Math.trunc(counter / 60);
+        return minutes + ":" + seconds;
+    }
+
 </script>
 
 <h1>Hello I am recording @Model.Name</h1>
@@ -34,3 +86,12 @@
 {
     <button type="button" onclick="AddTheirScore(@Model.Points[i])" class="TheirScore" >@(Model.Points[i])</button>
 }
+
+<div class="timer">
+    <h2 id="timeOutput">0</h2>
+    <h2 id="GameProgress"></h2>
+    <button id="start" type="button" class="btnStartTimer" onclick="StartTimer()">Start Game</button>
+    <button id="stop" type="button" class="btnStopTimer" onclick="StopTimer()" disabled>Pause/Stop Game (end period)</button>
+    <button id="restart" type="button" class="btnRestartTimer" onclick="RestartTimer()" disabled>Restart Timer</button>
+    <button id="finish" type="button" class="btnEndTimer" onclick="EndTimer()" disabled>Finish Game</button>
+</div>
