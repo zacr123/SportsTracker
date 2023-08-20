@@ -69,6 +69,14 @@
         return minutes + ":" + seconds;
     }
 
+    function ShareGame()
+    {
+        var email = document.getElementById("emailAddress").value;
+        var ourScore = document.getElementById("ourScore").innerText
+        var theirScore = document.getElementById("theirScore").innerText;
+        var url = "/Recording/Share?emailTo="+email+"&ourScore="+ourScore+"&theirScore="+theirScore;
+        location.href = url;
+    }
 </script>
 
 <h1>Hello I am recording @Model.Name</h1>
@@ -77,25 +85,25 @@
 <h2 id="ourScore" class="OurScore">0</h2>
 @for (int i = 0; i < Model.Points.Length; i++)
 {
-    <button type="button" onclick="AddOurScore(@Model.Points[i])" class="OurScore">@(Model.Points[i])</button>
+    <input type="button" onclick="AddOurScore(@Model.Points[i])" class="OurScore" value="@(Model.Points[i])" />
 }
 
 <h2>Their Score</h2>
 <h2 id="theirScore" class="TheirScore">0</h2>
 @for (int i = 0; i < Model.Points.Length; i++)
 {
-    <button type="button" onclick="AddTheirScore(@Model.Points[i])" class="TheirScore" >@(Model.Points[i])</button>
+    <input type="button" onclick="AddTheirScore(@Model.Points[i])" class="TheirScore" value="@(Model.Points[i])" />
 }
 
 <div class="timer">
     <h2 id="timeOutput">0</h2>
     <h2 id="GameProgress"></h2>
-    <button id="start" type="button" class="btnStartTimer" onclick="StartTimer()">Start Game</button>
-    <button id="stop" type="button" class="btnStopTimer" onclick="StopTimer()" disabled>Pause/Stop Game (end period)</button>
-    <button id="restart" type="button" class="btnRestartTimer" onclick="RestartTimer()" disabled>Restart Timer</button>
-    <button id="finish" type="button" class="btnEndTimer" onclick="EndTimer()" disabled>Finish Game</button>
+    <input id="start" type="button" class="btnStartTimer" onclick="StartTimer()" value="Start Game" />
+    <input id="stop" type="button" class="btnStopTimer" onclick="StopTimer()" disabled value="Pause/Stop Game (end period)" />
+    <input id="restart" type="button" class="btnRestartTimer" onclick="RestartTimer()" disabled value="Restart Timer" />
+    <input id="finish" type="button" class="btnEndTimer" onclick="EndTimer()" disabled value="Finish Game" />
 </div>
 <div>
     <input type="email" id="emailAddress" />
-    @Html.ActionLink("Share Game", "Share", "Recording")
+    <input type="button" class="btnShare" onclick="ShareGame()" value="Share Game"/>
 </div>

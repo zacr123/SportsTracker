@@ -24,17 +24,17 @@ namespace WebSite.Controllers
             return View(activeSport);
         }
 
-        public IActionResult Share(string emailTo)
+        public IActionResult Share(string emailTo, string ourScore, string theirScore)
         {
             SmtpClient email = new SmtpClient("smtp.gmail.com",587);
             email.EnableSsl = true;
             email.UseDefaultCredentials = false;
-            email.Credentials = new NetworkCredential("sportstracker35@gmail.com", "SportsTracker35");
+            email.Credentials = new NetworkCredential("sportstracker35@gmail.com", "bytenhzdsodpkkid");
             MailMessage message = new MailMessage();
             message.From = new MailAddress("sportstracker35@gmail.com");
-            message.To.Add("zacrichardson35@gmail.com");
+            message.To.Add(emailTo);
             message.Subject = "Sports Tracker game results";
-            message.Body = "Here are your game details";
+            message.Body = "Here are your game details.  We scored " + ourScore + " and they scored " + theirScore;
             email.Send(message);
             return View();
         }
