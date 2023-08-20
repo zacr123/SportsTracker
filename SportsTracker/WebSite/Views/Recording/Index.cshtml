@@ -54,7 +54,7 @@
         clearInterval(interval);
         document.getElementById("restart").setAttribute("disabled", "true");
         document.getElementById("finish").setAttribute("disabled", "true");
-        alert("Game done!");
+        document.getElementById("share").removeAttribute("disabled");
     }
 
     function ShowTime() {
@@ -94,4 +94,8 @@
     <button id="stop" type="button" class="btnStopTimer" onclick="StopTimer()" disabled>Pause/Stop Game (end period)</button>
     <button id="restart" type="button" class="btnRestartTimer" onclick="RestartTimer()" disabled>Restart Timer</button>
     <button id="finish" type="button" class="btnEndTimer" onclick="EndTimer()" disabled>Finish Game</button>
+</div>
+<div>
+    <input type="email" id="emailAddress" />
+    @Html.ActionLink("Share Game", "Share", "Recording")
 </div>
