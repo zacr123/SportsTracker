@@ -73,17 +73,48 @@ body {
 }
 
 button.OurScore {
-    background-color: #b6ff00
+    background-color: #ffffff
 }
 
 button.TheirScore {
-background-color: #ff0000
-}
+background-color: #ffffff
+}`
 
 h2.OurScore {
-    color:#ffd800 
+    color:#ffffff
 }
 
 h2.TheirScore {
     color:#ffffff
+}
+
+h2.TheirScore {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding-right: 10px;
+}
+
+button.TheirScore {
+    background-color: #ffffff;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+h2.OurScore {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding-right: 10px;
+}
+
+button.OurScore {
+    background-color: #ffffff;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+div.carousel-caption a {
+    color: #fff;
+    font-size: large;
 }
