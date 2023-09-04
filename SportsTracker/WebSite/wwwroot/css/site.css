@@ -95,10 +95,11 @@ h2.TheirScore {
     padding-right: 10px;
 }
 
-button.TheirScore {
+input.TheirScore {
     background-color: #ffffff;
     margin-left: 10px;
     vertical-align: middle;
+    width: 75px;
 }
 
 h2.OurScore {
@@ -108,13 +109,53 @@ h2.OurScore {
     padding-right: 10px;
 }
 
-button.OurScore {
+input.OurScore {
     background-color: #ffffff;
     margin-left: 10px;
     vertical-align: middle;
+    width: 75px;
 }
 
 div.carousel-caption a {
     color: #fff;
     font-size: large;
+}
+
+div.heading {
+    width:90%;
+    text-align: center;
+}
+
+div.scoring {
+    width: 90%;
+    display: table;
+    clear: both;
+}
+
+div.ourScore {
+    width: 40%;
+    float: left;
+    text-align: center;
+    background-color: lightgrey;
+    border: 5px groove black;
+    margin-left:10%;
+}
+
+div.theirScore {
+    width: 40%;
+    float: left;
+    text-align: center;
+    background-color: lightgrey;
+    border: 5px groove black;
+    margin-left: 10%;
+}
+
+div.box {
+    width: 90%;
+    margin: auto;
+}
+
+div.timer p {
+    background-color: lightgrey;
+    border: 5px groove black;
 }

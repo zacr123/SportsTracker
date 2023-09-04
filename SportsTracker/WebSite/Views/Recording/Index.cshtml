@@ -35,7 +35,12 @@
         document.getElementById("finish").removeAttribute("disabled");
         var currentHtml = document.getElementById("GameProgress").innerHTML;
         counter = counter - 1;
-        currentHtml = currentHtml + "<br/>" + GetGameTime();
+        if (currentHtml == ""){
+            currentHtml = GetGameTime();
+        }
+        else{
+            currentHtml = currentHtml + "<br/>" + GetGameTime();
+        }
         document.getElementById("GameProgress").innerHTML = currentHtml;
     }
 
@@ -54,7 +59,7 @@
         clearInterval(interval);
         document.getElementById("restart").setAttribute("disabled", "true");
         document.getElementById("finish").setAttribute("disabled", "true");
-        document.getElementById("share").removeAttribute("disabled");
+        document.getElementById("share").style.display = "block";
     }
 
     function ShowTime() {
@@ -64,9 +69,15 @@
 
     function GetGameTime()
     {
-        var seconds = counter % 60;
-        var minutes = Math.trunc(counter / 60);
-        return minutes + ":" + seconds;
+        var sec_num = counter; // don't forget the second param
+        var hours = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+        var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+        if (hours < 10) { hours = "0" + hours; }
+        if (minutes < 10) { minutes = "0" + minutes; }
+        if (seconds < 10) { seconds = "0" + seconds; }
+        return hours + ':' + minutes + ':' + seconds;
     }
 
     function ShareGame()
@@ -79,31 +90,44 @@
     }
 </script>
 
-<h1>Hello I am recording @Model.Name</h1>
-
-<h2>Our Score</h2>
-<h2 id="ourScore" class="OurScore">0</h2>
-@for (int i = 0; i < Model.Points.Length; i++)
-{
-    <input type="button" onclick="AddOurScore(@Model.Points[i])" class="OurScore" value="@(Model.Points[i])" />
-}
-
-<h2>Their Score</h2>
-<h2 id="theirScore" class="TheirScore">0</h2>
-@for (int i = 0; i < Model.Points.Length; i++)
-{
-    <input type="button" onclick="AddTheirScore(@Model.Points[i])" class="TheirScore" value="@(Model.Points[i])" />
-}
-
-<div class="timer">
-    <h2 id="timeOutput">0</h2>
-    <h2 id="GameProgress"></h2>
-    <input id="start" type="button" class="btnStartTimer" onclick="StartTimer()" value="Start Game" />
-    <input id="stop" type="button" class="btnStopTimer" onclick="StopTimer()" disabled value="Pause/Stop Game (end period)" />
-    <input id="restart" type="button" class="btnRestartTimer" onclick="RestartTimer()" disabled value="Restart Timer" />
-    <input id="finish" type="button" class="btnEndTimer" onclick="EndTimer()" disabled value="Finish Game" />
+<div class="heading">
+<h1>@Model.Name recording</h1>
 </div>
-<div>
-    <input type="email" id="emailAddress" />
-    <input type="button" class="btnShare" onclick="ShareGame()" value="Share Game"/>
+
+<div class="scoring">
+    <div class="ourScore">
+        <h2>Our Score</h2>
+        <h3 id="ourScore" class="OurScore">0</h3>
+        @for (int i = 0; i < Model.Points.Length; i++)
+        {
+            <input type="button" onclick="AddOurScore(@Model.Points[i])" class="OurScore" value="@(Model.Points[i])" />
+        }
+    </div>
+
+    <div class="theirScore">
+        <h2>Their Score</h2>
+        <h3 id="theirScore" class="TheirScore">0</h3>
+        @for (int i = 0; i < Model.Points.Length; i++)
+        {
+            <input type="button" onclick="AddTheirScore(@Model.Points[i])" class="TheirScore" value="@(Model.Points[i])" />
+        }
+    </div>
+</div>
+
+<div class="box">
+    <div class="timer">
+        <h4>Current game time:</h4><p id="timeOutput"></p>
+        <h4>Ongoing game time progress: </h4><p id="GameProgress"></p>
+        <input id="start" type="button" class="btnStartTimer" onclick="StartTimer()" value="Start Game" />
+        <input id="stop" type="button" class="btnStopTimer" onclick="StopTimer()" disabled value="Pause/Stop Game (end period)" />
+        <input id="restart" type="button" class="btnRestartTimer" onclick="RestartTimer()" disabled value="Restart Timer" />
+        <input id="finish" type="button" class="btnEndTimer" onclick="EndTimer()" disabled value="Finish Game" />
+    </div>
+</div>
+<div class="box">
+    <div id="share" style="display:none">
+        <h4>Enter email address to send game:</h4>
+        <input type="email" id="emailAddress" />
+        <input type="button" class="btnShare" onclick="ShareGame()" value="Share Game"/>
+    </div>
 </div>
